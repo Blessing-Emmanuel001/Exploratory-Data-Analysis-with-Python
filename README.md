@@ -5,13 +5,14 @@
 - [Project Overview](#project-overview)
 - [Data Source](#data-source)
 - [Tool](#tool)
-- [Data Cleaning/Preparation](#data-cleaning/preparation)
+- [Data Cleaning and Preparation](#data-cleaning-and-preparation)
 - [Exploratory Data Analysis](#exploratory-data-analysis)
 - [Data Analysis](#data-analysis)
-- [Results/Findings](#results/findings)
-- [Recommendation(s)](#recommendation(s))
-- [Limitation(s)](#limitation(s))
+- [Results](#results)
+- [Recommendations](#recommendations)
+- [Limitations](#limitations)
 - [References](#references)
+  
 ## Project Overview
 
 This project involves performing an exploratory data analysis(EDA) on an automobile dataset to uncover patterns, trends, and insights within the data. The primary goal is to understand the stucture and quality of the dataset, identify key variables, and evaluate their distribution and relationships.
@@ -24,7 +25,7 @@ Automobile Data: The primary dataset used for this analysis is the "automobile_d
 
 Python
 
-## Data Cleaning/Preparation
+## Data Cleaning and Preparation
 
 In the initial data preparation phase, I performed the following tasks:
 - Data loading and inspection
@@ -56,7 +57,7 @@ def greet (name):
    print (f"hello {name}!")
 ```
 
-### Results/Findings
+### Results
 
 The analysis results are summarized as folllows:
 1. Car Brands Represented: The dataset includes 22 unique car makes, such as Toyota, BMW, Audi, Honda, Mercedes-Benz, and Porsche.
@@ -80,7 +81,7 @@ The analysis results are summarized as folllows:
 	•	Lower-risk cars (e.g., symboling -2, -1) have higher average prices
 	•	Higher-risk cars (symboling 1–3) are typically less expensive
 
-### Recommendation(s)
+### Recommendations
 
 Based on the Analysis results, here are some targeted recommendations. These can guide business decisions around marketing, pricing, policy design, insurance, and product segmentation:
 
@@ -114,7 +115,7 @@ High-income clients → Luxury and performance-focused packages.
 10. Customer Education & Tools
 	•	Develop a car selection guide or web tool that helps customers balance between price, fuel efficiency, and repair cost risks.
 
-### Limitation(s)
+### Limitations
 
 1. Some features (e.g., normalized-losses) had missing values, which can affect the accuracy of insights.
 2. Key customer-related attributes (e.g., age, income, location, driving habits) were missing, limiting personalized insights.

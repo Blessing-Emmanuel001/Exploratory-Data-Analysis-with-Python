@@ -19,7 +19,7 @@ This project involves performing an exploratory data analysis(EDA) on an automob
 
 ## Data Source
 
-Automobile Data: The primary dataset used for this analysis is the "automobile_dataset.csv" file containing detailed information about various cars including their technical specifications, insurance risk ratings and normalised loss values.
+Automobile Data: The primary dataset used for this analysis is the "https://github.com/Blessing-Emmanuel001/Exploratory-Data-Analysis-with-Python/blob/main/automobile_dataset.csv" file containing detailed information about various cars including their technical specifications, insurance risk ratings and normalised loss values.
 
 ## Tool
 

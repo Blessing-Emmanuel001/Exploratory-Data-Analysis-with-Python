@@ -30,9 +30,9 @@ Python
 In the initial data preparation phase, I performed the following tasks:
 - Data loading and inspection
 - Detect columns or rows with missing values
+- Remove irrelevant columns
 - Remove duplicates and inconsistencies
-- Fix outliers and incorrect entries
-- Data cleaning and formatting - (data types)
+- Confirm data types
 
 ## Exploratory Data Analysis
 

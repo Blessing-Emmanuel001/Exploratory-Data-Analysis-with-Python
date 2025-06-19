@@ -31,14 +31,16 @@ In the initial data preparation phase, I performed the following tasks:
 - Data loading and inspection
 - Detect columns or rows with missing values
 - Remove irrelevant columns
+- Fill missing numeric values with mean
+- fill missing categorical data with mode
 - Remove duplicates and inconsistencies
 - Confirm data types
 
 ## Exploratory Data Analysis
 
 EDA involves exploring the data to answer key questions such as:
-1. What are the different car makes(brands) represented in the dataset
-2. What type of fuel (gas, diesel) and body styles(sedan, hatchbacks,etc) are most common
+1. What are the different car makes(brands) represented in the dataset and represent using a chart
+2. What type of fuel (gas, diesel) and body styles(sedan, hatchbacks,etc) are most common 
 3. What is the average price of a car in the dataset
 4. Which car features are associated with higher risks (e.g., higher price, engine size, horsepower)?
 5. Which cars are more likely to be owned by customers who value fuel efficiency (for eco-driving policies)?

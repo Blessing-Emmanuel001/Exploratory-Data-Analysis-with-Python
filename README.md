@@ -33,6 +33,7 @@ In the initial data preparation phase, I performed the following tasks:
 - Remove irrelevant columns
 - Fill missing numeric values with mean
 - fill missing categorical data with mode
+- Drop row with missing values
 - Remove duplicates and inconsistencies
 - Confirm data types
 

@@ -30,10 +30,10 @@ Python
 In the initial data preparation phase, I performed the following tasks:
 - Data loading and inspection
 - Detect columns or rows with missing values
-- Remove irrelevant columns
+- Drop row with missing values
 - Fill missing numeric values with mean
 - fill missing categorical data with mode
-- Drop row with missing values
+- Remove irrelevant columns
 - Remove duplicates and inconsistencies
 - Confirm data types
 

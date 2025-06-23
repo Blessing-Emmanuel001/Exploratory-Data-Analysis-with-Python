@@ -46,10 +46,9 @@ EDA involves exploring the data to answer key questions such as:
 4. Which car features are associated with higher risks (e.g., higher price, engine size, horsepower)?
 5. Which cars are more likely to be owned by customers who value fuel efficiency (for eco-driving policies)?
 6. Does vehicle weight (curb-weight) influence the likelihood or severity of damage in accidents?
-7. How can price segmentation be used to create premium categories (e.g., economy, mid-range, luxury)?
-8. What is the cost difference between gas and diesel cars, and how should this affect policy pricing?
-9. Which vehicle attributes suggest a higher likelihood of expensive repairs or replacement?
-10. How can the company segment its vehicle-owning clients for better-targeted insurance offerings (e.g., young drivers, low-income drivers)?
+7. What is the cost difference between gas and diesel cars, and how should this affect policy pricing?
+8. Which vehicle attributes suggest a higher likelihood of expensive repairs or replacement?
+9. How can the company segment its vehicle-owning clients for better-targeted insurance offerings (e.g., young drivers, low-income drivers)?
 
 ## Data Analysis
 

@@ -46,23 +46,82 @@ EDA involves exploring the data to answer key questions such as:
 4. Which car features are associated with higher risks (e.g., higher price, engine size, horsepower)?
 5. Which cars are more likely to be owned by customers who value fuel efficiency (for eco-driving policies)?
 6. Does vehicle weight (curb-weight) influence the likelihood or severity of damage in accidents?
-7. What is the cost difference between gas and diesel cars, and how should this affect policy pricing?
-8. Which vehicle attributes suggest a higher likelihood of expensive repairs or replacement?
-9. How can the company segment its vehicle-owning clients for better-targeted insurance offerings (e.g., young drivers, low-income drivers)?
+7. How can price segmentation create premium categories (e.g., economy, mid-range, luxury)?
+8. What is the cost difference between gas and diesel cars, and how should this affect policy pricing?
+9. Which vehicle attributes suggest a higher likelihood of expensive repairs or replacement?
+10. How can the company segment its vehicle-owning clients for better-targeted insurance offerings (e.g., young drivers, low-income drivers)?
 
 ## Data Analysis
 
-(Included some interesting code I worked with)
-
 ```python
-def greet (name):
-   print (f"hello {name}!")
+# Drop row with missing values
+df2 = df.dropna(subset=['price'])
+
+# Fill missing numeric values with mean
+for col in ['stroke', 'bore', 'peak-rpm', 'horsepower']:
+    df2.loc[:, col] = df2[col].fillna(df2[col].mean())
+
+# fill missing categorical data with mode
+df2.loc[:, 'num-of-doors'] = df2['num-of-doors'].fillna(df2['num-of-doors'].mode()[0])
+
+# Remove irrellevant columns
+df2 = df2.drop(columns=['symboling',             
+    'normalized-losses',      
+    'aspiration',            
+    'engine-location',        
+    'fuel-system',            
+    'engine-type'])
+
+# Remove duplicates and inconsistencies
+df2 = df2.drop_duplicates()
+print("Duplicate rows found:", df2.duplicated().sum())
+
+# confirming data types for accuracy 
+print(df2.dtypes)
+```
+
+9. How can the company segment its vehicle-owning clients for better-targeted insurance offerings (e.g., young drivers, low-income drivers)?
+```
+# Step 1: Create price segments (income-based proxy)
+def price_segment(price):
+    if price < 10000:
+        return "Low-income"
+    elif price < 20000:
+        return "Middle-income"
+    else:
+        return "High-income"
+
+df2['income-segment'] = df2['price'].apply(price_segment)
+
+# Step 2: Create power segments as proxy for "young driver" risk profiles
+def power_segment(hp):
+    if hp < 100:
+        return "Conservative"
+    elif hp < 150:
+        return "Moderate"
+    else:
+        return "Performance-oriented"
+
+df2['driver-segment'] = df2['horsepower'].apply(power_segment)
+
+# Step 3: Count combinations of both segments
+segmentation = df2.groupby(['income-segment', 'driver-segment']).size().unstack().fillna(0)
+
+# Plotting the segmentation matrix
+plt.figure(figsize=(10, 6))
+segmentation.plot(kind='bar', stacked=True, colormap='viridis')
+plt.title("Client Segmentation by Income and Driver Profile")
+plt.xlabel("Income Segment")
+plt.ylabel("Number of Vehicles")
+plt.xticks(rotation=0)
+plt.tight_layout()
+plt.show()    
 ```
 
 ### Results
 
 The analysis results are summarized as folllows:
-1. Car Brands Represented: The dataset includes 22 unique car makes, such as Toyota, BMW, Audi, Honda, Mercedes-Benz, and Porsche.
+1. Car Brands Represented: The dataset includes 22 unique car makes, such as Toyota, BMW, Audi, Honda, Mercedes-Benz, Porsche and more. Toyota is the most represented brand.
 2. Most Common Fuel & Body Style: Fuel Type: Gas-powered vehicles dominate and for Body Style: Sedans are the most common body style.
 3. Average Car Price: The average price of vehicles is approximately $13,207.
 4. Features Associated with Higher Prices: Strong positive correlation with:
@@ -70,13 +129,15 @@ The analysis results are summarized as folllows:
 	•	Curb weight (0.83)
 	•	Horsepower (0.81)
 	•	Vehicle width (0.75)
-5. Top Fuel-Efficient Vehicles (Highway MPG): Leading models include Honda, Chevrolet, and Toyota with up to 54 MPG, suggesting preference for fuel efficiency.
-6. Curb Weight vs Damage Severity: Weak correlation (~0.12) between curb-weight and normalized-losses, implying a slight link to accident severity.
+Vehicles with higher engine sizes and horsepower tend to be more expensive and risky. These include sports and luxury cars with higher insurance implications.
+5. Top Fuel-Efficient Vehicles (Highway MPG):Brands like Honda, Toyota, and Volkswagen top the list in fuel efficiency (measured via highway MPG). Ideal for eco-conscious and cost-sensitive buyers.
+6. Curb Weight vs Damage Severity: Heavier vehicles tend to have higher prices, potentially correlating with greater repair costs in accidents.
 7. Price Segmentation: Vehicles segmented as:
 	•	Economy: 98 cars (≤ $10,000)
 	•	Mid-range: 78 cars ($10,001–$20,000)
 	•	Luxury: 25 cars (>$20,000)
-8. Fuel Type & Cost Comparison: Diesel cars average $15,838, while gas cars average $12,916—diesel cars cost more, which could affect policy pricing.
+Helps target customers based on affordability.
+8. Fuel Type & Cost Comparison: Diesel cars tend to be more expensive than gas cars. Can influence pricing models for fuel type.
 9. Repair Cost Indicators: Vehicles with higher engine size, horsepower, and curb weight are more likely to incur expensive repairs or replacements.
 10. Client Segmentation for Insurance:
 	•	Using symboling (risk rating) to segment:

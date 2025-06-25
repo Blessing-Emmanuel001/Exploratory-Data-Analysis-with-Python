@@ -52,73 +52,11 @@ EDA involves exploring the data to answer key questions such as:
 10. How can the company segment its vehicle-owning clients for better-targeted insurance offerings (e.g., young drivers, low-income drivers)?
 
 ## Data Analysis
+#### View Full Jupyter Notebook
 
-```python
-# Drop row with missing values
-df2 = df.dropna(subset=['price'])
+👉 [Click here to view the notebook in nbviewer](https://nbviewer.org/github/Blessing-Emmanuel001/Exploratory-Data-Analysis-with-Python/blob/main/eda_car_insurance_analysis.ipynb)
 
-# Fill missing numeric values with mean
-for col in ['stroke', 'bore', 'peak-rpm', 'horsepower']:
-    df2.loc[:, col] = df2[col].fillna(df2[col].mean())
-
-# fill missing categorical data with mode
-df2.loc[:, 'num-of-doors'] = df2['num-of-doors'].fillna(df2['num-of-doors'].mode()[0])
-
-# Remove irrellevant columns
-df2 = df2.drop(columns=['symboling',             
-    'normalized-losses',      
-    'aspiration',            
-    'engine-location',        
-    'fuel-system',            
-    'engine-type'])
-
-# Remove duplicates and inconsistencies
-df2 = df2.drop_duplicates()
-print("Duplicate rows found:", df2.duplicated().sum())
-
-# confirming data types for accuracy 
-print(df2.dtypes)
-```
-
-9. How can the company segment its vehicle-owning clients for better-targeted insurance offerings (e.g., young drivers, low-income drivers)?
-```
-# Step 1: Create price segments (income-based proxy)
-def price_segment(price):
-    if price < 10000:
-        return "Low-income"
-    elif price < 20000:
-        return "Middle-income"
-    else:
-        return "High-income"
-
-df2['income-segment'] = df2['price'].apply(price_segment)
-
-# Step 2: Create power segments as proxy for "young driver" risk profiles
-def power_segment(hp):
-    if hp < 100:
-        return "Conservative"
-    elif hp < 150:
-        return "Moderate"
-    else:
-        return "Performance-oriented"
-
-df2['driver-segment'] = df2['horsepower'].apply(power_segment)
-
-# Step 3: Count combinations of both segments
-segmentation = df2.groupby(['income-segment', 'driver-segment']).size().unstack().fillna(0)
-
-# Plotting the segmentation matrix
-plt.figure(figsize=(10, 6))
-segmentation.plot(kind='bar', stacked=True, colormap='viridis')
-plt.title("Client Segmentation by Income and Driver Profile")
-plt.xlabel("Income Segment")
-plt.ylabel("Number of Vehicles")
-plt.xticks(rotation=0)
-plt.tight_layout()
-plt.show()    
-```
-
-### Results
+## Results
 
 The analysis results are summarized as folllows:
 1. Car Brands Represented: The dataset includes 22 unique car makes, such as Toyota, BMW, Audi, Honda, Mercedes-Benz, Porsche and more. Toyota is the most represented brand.
